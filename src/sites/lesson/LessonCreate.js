@@ -9,7 +9,7 @@ import appContext from "../../context/AppContext";
 import TimeInput from "../../components/inputs/TimeInput";
 import NumberInput from "../../components/inputs/NumberInput";
 import AttendanceInput from "../../components/inputs/AttendanceInput";
-import VideoYoutubeInput from "../../components/inputs/VideoYoutubeInput";
+import VideoRecordInput from "../../components/inputs/VideoRecordInput";
 
 const LessonCreate = () => {
     const app = useContext(appContext)
@@ -26,15 +26,18 @@ const LessonCreate = () => {
     const [init, setInit] = useState({})
     const [fetching, setFetching] = useState(false)
     const [data, setData] = useState({
-        classroom_id: classroom_id
+        classroom_id: classroom_id,
+        record: {
+            type: "youtube"
+        }
     })
     const uploadLesson = async () => {
         console.log(data)
-        // if (id) {
-        //     await app.modifyTeacher({postData: {...data, id: id}, setFetching: setFetching})
-        // } else {
-        //     await app.modifyTeacher({postData: {...data}, setFetching: setFetching})
-        // }
+        if (id) {
+            await app.modifyLesson({postData: {...data, id: id}, setFetching: setFetching})
+        } else {
+            await app.modifyLesson({postData: {...data}, setFetching: setFetching})
+        }
     }
     useEffect(() => {
         document.title = label
@@ -108,7 +111,7 @@ const LessonCreate = () => {
                                     />
                                 </div>
                                 <div className={"md:basis-1/2 basis-full "}>
-                                    <VideoYoutubeInput
+                                    <VideoRecordInput
                                         name={'record'}
                                         data={data}
                                         setData={setData}

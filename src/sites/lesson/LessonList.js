@@ -13,6 +13,8 @@ import {toast} from "react-toastify";
 import AppContext from "../../context/AppContext";
 import EmptyItem from "../../components/EmptyItem";
 import EntityCol from "../../components/table/EntityCol";
+import VideoRecordInput from "../../components/inputs/VideoRecordInput";
+import VideoRecordCol from "../../components/table/VideoRecordCol";
 
 const LessonList = () => {
     const app = useContext(AppContext)
@@ -200,8 +202,8 @@ const LessonList = () => {
                                     <TextCol
                                         value={lesson.lessonSalary.toLocaleString()}
                                     />
-                                    <TextCol
-                                        value={lesson.recordVideo || ''}
+                                    <VideoRecordCol
+                                        video={lesson.recordVideo}
                                     />
                                     <ActionCol
                                         confirmDelete={confirmDelete}

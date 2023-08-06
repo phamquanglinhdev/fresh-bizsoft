@@ -340,7 +340,7 @@ export const AppProvider = ({children}) => {
             toast.success(response.data.message, {
                 autoClose: 1000
             })
-            redirectTo("/classroom/list")
+            redirectTo("/lesson/list")
         } catch (e) {
             toast.error(e.response.data.message)
         } finally {
